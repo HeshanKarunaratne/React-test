@@ -4,7 +4,10 @@
   "private": true,
   "dependencies": {
     "axios": "^0.21.1",
+    "check-prop-types": "^1.1.2",
     "node-sass": "^5.0.0",
+    "prop-type": "0.0.1",
+    "prop-types": "^15.7.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-redux": "^5.1.2",
