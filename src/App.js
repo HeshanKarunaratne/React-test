@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Header from "./components/Header/index";
 import "./App.scss";
 import Headline from "./components/Headline";
-
+import { Provider } from "react-redux";
+import store from "./store";
 const tempArr = [
   {
     fName: "Joe",
@@ -15,16 +16,18 @@ const tempArr = [
 class App extends Component {
   render() {
     return (
-      <div>
-        <Header />
-        <section className="main">
-          <Headline
-            header="Posts"
-            desc="Click the button to render posts"
-            tempArr={tempArr}
-          />
-        </section>
-      </div>
+      <Provider store={store}>
+        <div>
+          <Header />
+          <section className="main">
+            <Headline
+              header="Posts"
+              desc="Click the button to render posts"
+              tempArr={tempArr}
+            />
+          </section>
+        </div>
+      </Provider>
     );
   }
 }
