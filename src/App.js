@@ -2,8 +2,13 @@ import React, { Component } from "react";
 import Header from "./components/Header/index";
 import "./App.scss";
 import Headline from "./components/Headline";
-import { Provider } from "react-redux";
-import store from "./store";
+import { connect } from "react-redux";
+
+import Button from "./components/Button";
+import ListItem from "./components/ListItem";
+
+import { fetchPosts } from "./actions";
+
 const tempArr = [
   {
     fName: "Joe",
@@ -14,22 +19,47 @@ const tempArr = [
   },
 ];
 class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+  fetch = () => {
+    this.props.fetchPosts();
+  };
   render() {
+    const { posts } = this.props;
     return (
-      <Provider store={store}>
-        <div>
-          <Header />
-          <section className="main">
-            <Headline
-              header="Posts"
-              desc="Click the button to render posts"
-              tempArr={tempArr}
-            />
-          </section>
-        </div>
-      </Provider>
+      <div>
+        <Header />
+        <section className="main">
+          <Headline
+            header="Posts"
+            desc="Click the button to render posts"
+            tempArr={tempArr}
+          />
+          <Button buttonText="Get Posts" emitEvent={this.fetch}></Button>
+          {posts.length > 0 && (
+            <div>
+              {posts.map((post, index) => {
+                const { title, body } = post;
+                return <ListItem key={index} title={title} desc={body} />;
+              })}
+            </div>
+          )}
+        </section>
+      </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    posts: state.postsReducer.posts,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchPosts: () => dispatch(fetchPosts()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,4 +1,8 @@
-import { GET_POSTS } from "./../../actions/types";
+import {
+  GET_POSTS,
+  GET_POSTS_SUCCESS,
+  GET_POSTS_FAILED,
+} from "./../../actions/types";
 
 const initialState = {
   flag: false,
@@ -8,7 +12,13 @@ const initialState = {
 const postsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_POSTS:
-      return { ...state, posts: action.payload };
+      return { ...state, flag: true };
+
+    case GET_POSTS_SUCCESS:
+      return { ...state, flag: false, posts: action.payload, error: "" };
+
+    case GET_POSTS_FAILED:
+      return { ...state, flag: false, error: action.payload, posts: [] };
 
     default:
       return state;

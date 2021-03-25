@@ -1,4 +1,4 @@
-import { GET_POSTS } from "./../../actions/types";
+import { GET_POSTS, GET_POSTS_SUCCESS } from "./../../actions/types";
 import postsReducer from "./postsReducer";
 
 describe("Posts Reducer", () => {
@@ -14,15 +14,16 @@ describe("Posts Reducer", () => {
 
   test("should return new state if receiving type", () => {
     const initialState = {
-      flag: false,
-      posts: [{ title: "Test 1" }, { title: "Test 2" }, { title: "Test 3" }],
+      flag: true,
+      posts: [],
       errors: "",
     };
 
     const newState = postsReducer(undefined, {
       type: GET_POSTS,
-      payload: [{ title: "Test 1" }, { title: "Test 2" }, { title: "Test 3" }],
     });
     expect(newState).toEqual(initialState);
   });
 });
+
+// { title: "Test 1" }, { title: "Test 2" }, { title: "Test 3" }
