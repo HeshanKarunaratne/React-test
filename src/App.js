@@ -28,7 +28,7 @@ class App extends Component {
   render() {
     const { posts } = this.props;
     return (
-      <div>
+      <div className="App" data-test="appComponent">
         <Header />
         <section className="main">
           <Headline
