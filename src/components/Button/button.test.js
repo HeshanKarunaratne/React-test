@@ -38,5 +38,11 @@ describe("Button Component", () => {
       const callback = mockFunc.mock.calls.length;
       expect(callback).toBe(1);
     });
+
+    test("ExampleMethod_returnsAValue a value as expected", () => {
+      const classInstance = wrapper.instance();
+      const newValue = classInstance.exampleMethod_returnsAValue(1);
+      expect(newValue).toBe(2);
+    });
   });
 });

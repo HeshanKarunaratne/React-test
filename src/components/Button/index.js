@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 class Button extends Component {
+  exampleMethod_returnsAValue = (number) => {
+    return number + 1;
+  };
+
   submitEvent() {
     if (this.props.emitEvent) {
       this.props.emitEvent();
